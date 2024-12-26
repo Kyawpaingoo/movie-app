@@ -1,0 +1,25 @@
+[
+  {
+    "id": "title",
+    "label": "Title (A-Z)"
+  },
+  {
+    "id": "title-desc",
+    "label": "Title (Z-A)"
+  },
+  {
+    "id": "year",
+    "label": "Year (Newest)"
+  },
+  {
+    "id": "year-desc",
+    "label": "Year (Oldest)"
+  },
+  {
+    "id": "rating",
+    "label": "Rating (Highest)"
+  },
+  {
+    "id": "rating-desc", "label": "Rating (Lowest)"
+  }
+]

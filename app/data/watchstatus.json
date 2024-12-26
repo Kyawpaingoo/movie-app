@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "label": "Want to Watch"
+  },
+  {
+    "id": 2,
+    "label": "Currently Watching"
+  },
+  {
+    "id": 3,
+    "label": "Completed"
+  }
+]
