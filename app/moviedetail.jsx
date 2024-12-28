@@ -5,8 +5,13 @@ export default function MovieDetail({route, navigation}) {
 
     return(
         <View style={styles.container}>
-            <Button title="Back" onPress={() => navigation.goBack()} />
-            <ScrollView style={styles.container}>
+            <View style={styles.header}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <Text style={styles.backButtonText}>Back</Text>
+                </TouchableOpacity>
+            </View>
+            
+            <ScrollView style={styles.scrollView}>
                 <Image
                     style={styles.poster}
                     source={{ uri: movie.posterUrl}}

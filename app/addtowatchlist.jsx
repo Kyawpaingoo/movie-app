@@ -6,8 +6,8 @@ import styles from "./scripts.js";
 import {movies} from "./movies";
 import {watchStatus} from "./movies";
 
+
 export default function AddToWatchlist({route, navigation}) {
-    const {from } = route.params || {};
     const { movie } = route.params || {};
     const [status, setStatus] = useState('Want to Watch');
     const [notes, setNotes] = useState('');
@@ -15,7 +15,6 @@ export default function AddToWatchlist({route, navigation}) {
     const [searchedMovies, setSearchedMovies] = useState(movie ? [movie] : []);
     const [selectedMovie, setSelectedMovie] = useState(movie || null);
 
-    // Debounce search to prevent too many searches
     useEffect(() => {
         let timeoutId;
         if (movieName && movieName.length > 2) {
@@ -78,6 +77,7 @@ export default function AddToWatchlist({route, navigation}) {
                 if(!isMovieList)
                 {
                     const newMovieEntry = {
+                        id: selectedMovie.id,
                         title: selectedMovie.title,
                         year: selectedMovie.year,
                         posterUrl: selectedMovie.posterUrl || '', // Optional field
@@ -117,12 +117,13 @@ export default function AddToWatchlist({route, navigation}) {
                     style={styles.backButton}
                     onPress={handleBack}
                 >
-                    <Icon name="arrow-back" size={24} color="#000" />
+                   <Text style={styles.backButtonText}>Back</Text>
                 </TouchableOpacity>
+                <Text style={styles.headerTitle}>Add to Watchlist</Text>
             </View>
 
             <View style={styles.form}>
-                <Text>Movie Name</Text>
+                <Text style={styles.label}>Movie Name</Text>
                 <TextInput
                     style={styles.input_name}
                     multiline={false}
@@ -132,7 +133,6 @@ export default function AddToWatchlist({route, navigation}) {
                     onChangeText={setMovieName}
                 />
 
-                {/* Movie Search Results */}
                 {searchedMovies.length > 0 && (
                     <View style={styles.searchResultsContainer}>
                         <FlatList
@@ -145,7 +145,6 @@ export default function AddToWatchlist({route, navigation}) {
                     </View>
                 )}
 
-                {/* Display selected movie information */}
                 {selectedMovie && (
                     <View style={styles.movieInfo}>
                         <Text style={styles.label}>Movie Details</Text>
@@ -181,7 +180,7 @@ export default function AddToWatchlist({route, navigation}) {
                 <TextInput
                     style={styles.input_note}
                     multiline={true}
-                    numberOfLines={4}
+                    numberOfLines={2}
                     placeholder="Add your thoughts about this movie..."
                     value={notes}
                     onChangeText={setNotes}

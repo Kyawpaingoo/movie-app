@@ -2,6 +2,9 @@ import {FlatList, Text, TouchableOpacity, View, Image, Modal, Button} from "reac
 import styles from "./scripts.js";
 import {movies} from "./movies";
 import {useEffect, useState} from "react";
+import { sortOptions } from "./movies";
+import SearchBar from "./searchbar";
+import SortPicker from "./sortpicker";
 
 const MovieCard = ({movie, onPress})=> (
     <TouchableOpacity style={styles.card} onPress={onPress}>
@@ -24,7 +27,10 @@ const MovieCard = ({movie, onPress})=> (
 export default function Index({navigation, route}) {
     const [message, setMessage] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
-
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedSortOption, setSelectedSortOption] = useState(sortOptions[0].id);
+    const [filteredMovies, setFilteredMovies] = useState(movies);
+  
     useEffect(() => {
         if(route.params?.successMessage) {
            
@@ -40,6 +46,41 @@ export default function Index({navigation, route}) {
         }
     }, [route.params?.successMessage]);
 
+    useEffect(() => {
+        filterAndSortMovies();
+      }, [searchQuery, selectedSortOption]);
+    
+      const filterAndSortMovies = () => {
+        let filtered = movies.filter(movie =>
+          movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    
+        switch (selectedSortOption) {
+          case 'title':
+            filtered.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case 'title-desc':
+            filtered.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+          case 'year':
+            filtered.sort((a, b) => b.year - a.year);
+            break;
+          case 'year-desc':
+            filtered.sort((a, b) => a.year - b.year);
+            break;
+          case 'rating':
+            filtered.sort((a, b) => b.rating - a.rating);
+            break;
+          case 'rating-desc':
+            filtered.sort((a, b) => a.rating - b.rating);
+            break;
+          default:
+            break;
+        }
+    
+        setFilteredMovies(filtered);
+      };
+
     const renderItem = ({item}) => (
         <MovieCard
             movie={item}
@@ -51,8 +92,13 @@ export default function Index({navigation, route}) {
     <View
       style={styles.container}
     >
-      <View style={styles.filterBar}>
-          <Text>Filter/Sort Options</Text>
+       <View style={styles.filterBar}>
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SortPicker
+          selectedSortOption={selectedSortOption}
+          setSelectedSortOption={setSelectedSortOption}
+          sortOptions={sortOptions}
+        />
       </View>
         <View style={styles.movieList}>
             <FlatList
@@ -63,11 +109,18 @@ export default function Index({navigation, route}) {
             />
         </View>
 
-        {message ? (
-                <View style={styles.footer}>
-                    <Text style={styles.footerText}>{message}</Text>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+        >
+            <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                    <Text style={styles.modalText}>{message}</Text>
                 </View>
-            ) : null}
+            </View>
+        </Modal>
     </View>
   );
 }

@@ -59,7 +59,7 @@ export default function RootLayout() {
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="MainApp" component={TabNavigator} />
             <Stack.Screen name="MovieDetail" component={MovieDetail} />
-            <Stack.Screen name="AddToWatchList" component={props => <AddToWatchlist {...props} route={{...props.route, params: { from: 'StackNavigator' }}} />} />
+            <Stack.Screen name="AddToWatchList" component={AddToWatchlist} />
         </Stack.Navigator>
   )
 }

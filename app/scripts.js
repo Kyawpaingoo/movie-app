@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        padding: 16
+        padding: 10,
     },
     list: {
       padding: 16,
@@ -25,67 +25,82 @@ const styles = StyleSheet.create({
         padding: 12,
     },
     title: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 4,
+        color: '#333',
     },
     year: {
-        fontSize: 14,
-        color: '#666',
-        marginBottom: 4,
+        fontSize: 16,
+        color: '#888',
     },
     ratingContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     rating: {
-        fontSize: 14,
-        color: '#f39c12',
+        fontSize: 16,
+        color: '#444',
         marginRight: 8,
     },
     contentContainer: {
         padding: 16,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
     duration: {
         fontSize: 14,
-        color: '#666',
+        color: '#888',
     },
     filterBar: {
         padding: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        borderBottomColor: '#ddd',
+        backgroundColor: '#fff',
+        marginBottom: 10,
+    },
+    filterText: {
+        fontSize: 16,
+        color: '#333',
     },
     movieList: {
         flex: 1,
-        padding: 10,
+        justifyContent: 'center',
     },
     poster: {
         width: 100,
         height: 150,
-        borderTopLeftRadius: 8,
-        borderBottomLeftRadius: 8,
+        borderRadius: 10,
+        margin: 10,
     },
     statusContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        margin: 4,
-
+        marginBottom: 16,
     },
     statusOption: {
-        paddingHorizontal: 0,
-        paddingVertical: 2,
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        marginRight: 8,
+        marginBottom: 8,
     },
     statusText: {
         color: '#666',
-        padding: 10,
     },
     input_name: {
         borderWidth: 1,
         borderColor: '#ddd',
         borderRadius: 8,
         padding: 12,
-        //height: 100,
-        textAlignVertical: 'top',
+        marginBottom: 16,
     },
     input_note: {
         borderWidth: 1,
@@ -94,10 +109,12 @@ const styles = StyleSheet.create({
         padding: 12,
         height: 100,
         textAlignVertical: 'top',
+        marginBottom: 16,
     },
     infoRow: {
         flexDirection: 'row',
-        marginBottom: 12,
+        justifyContent: 'space-between',
+        marginBottom: 16,
     },
     genreContainer: {
         flexDirection: 'row',
@@ -105,7 +122,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     genrePill: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#e6f2ff',
         paddingHorizontal: 12,
         paddingVertical: 6,
         borderRadius: 16,
@@ -113,7 +130,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     genreText: {
-        color: '#666',
+        color: '#007bff',
     },
     sectionTitle: {
         fontSize: 18,
@@ -145,10 +162,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     backButton: {
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
+        alignSelf: 'flex-start',
+        marginBottom: 5,
+        marginRight: 10,
+        flexDirection: 'row',
     },
     movieResultItem: {
         flexDirection: 'row',
@@ -179,16 +196,14 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#f0f0f0',
         borderRadius: 5,
-    }, statusSelected: {
-        backgroundColor: '#007bff',
+    }, 
+    statusSelected: {
+        backgroundColor: '#1a1a2e',
+        borderColor: '#1a1a2e',
     },
-
     statusTextSelected: {
-        color: 'white',
-        backgroundColor: '#007bff',
-        padding: 10,
+        color: '#fff',
     },
-
     modalView: {
         flex: 1,
         justifyContent: 'center',
@@ -210,28 +225,165 @@ const styles = StyleSheet.create({
         color: '#fff', 
         fontSize: 16 
     },
-    status: { fontSize: 14, marginTop: 5 },
-    header: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
-    noDataText: { fontSize: 18, textAlign: 'center', marginTop: 20 },
-    watchListItem: {
-        flexDirection: 'row', // Content inside each item is horizontal
-        backgroundColor: '#f8f8f8',
-        paddingVertical: 0,
-        paddingLeft: 0,   
-        borderRadius: 5,
-        height: 120,
-        marginBottom: 10, // Separate items vertically
+    status: { 
+        color: '#fff',
+        fontSize: 14, 
+        marginTop: 6,
+        paddingVertical: 4,
+        paddingHorizontal: 12,
+        borderRadius: 20,
+        alignSelf: 'flex-start',
+    },
+    header: { 
+        padding: 10,
+        flexDirection: 'row',
         alignItems: 'center',
+        marginBottom: 20, 
     },
-    watchListContainer: {
-        flex: 1,
+    noDataText: { 
+        fontSize: 18, 
+        textAlign: 'center', 
+        marginTop: 20 
+    },
+    watchListItem: {
+        flexDirection: 'row',
         backgroundColor: '#fff',
-        padding: 16
+        padding: 10,
+        borderRadius: 8,
+        height: 150,
+        marginBottom: 10,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
-    watchListPoster: { width: 80, height: 80, marginRight: 10 },
+    watchListPoster: { 
+        width: 80,
+        height: 120,
+        borderRadius: 8,
+        marginRight: 10,
+    },
     movieInfo: {
         flex: 1,
         justifyContent: 'center',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    label: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 8,
+        color: '#333',
+    },
+    scrollView: {
+        flex: 1,
+    },
+    backButtonText: {
+        color: '#1a1a2e',
+        fontSize: 16,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    modalText: {
+        fontSize: 16,
+        color: '#333',
+    },
+    
+    headerTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    form: {
+        backgroundColor: '#fff',
+        padding: 16,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    backText: {
+        color: '#1a1a2e',
+        fontSize: 16,
+        paddingLeft: 5,
+    },
+    cast: {
+        fontSize: 16,
+        color: '#666',
+        marginBottom: 16,
+    },
+    saveButton: {
+        backgroundColor: '#1a1a2e',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 20,
+    },
+    saveButtonText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    changeStatusButton: {
+        backgroundColor: '#1a1a2e',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 25,
+        alignItems: 'center',
+        marginTop: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    changeStatusButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    filterBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+        padding: 10,
+        backgroundColor: '#fff',
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    searchBar: {
+        flex: 1,
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingLeft: 10,
+        backgroundColor: '#fff',
+    },
+    sortPicker: {
+        width: '100%',
+        height: 50,
+        marginLeft: 10,
+        flex: 1
     },
 });
 
